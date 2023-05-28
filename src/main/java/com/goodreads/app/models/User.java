@@ -40,14 +40,14 @@ public class User implements Serializable {
     private String name;
     private String middleName;
     //@Column(nullable = false)
-    private String sureName;
+    private String surname;
     //@Column(nullable = false)
     private String email;
     //@Column(nullable = false)
     private Character gender;
     private String address;
-    //Date formatting required?
-    private Date dateOfBirth;
+    //Date formatting required? Kuupäev?
+    private Integer dateOfBirth;
     private String phoneNumber;
     private String aboutMe;
     private String myInterests;
