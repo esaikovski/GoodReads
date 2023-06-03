@@ -5,19 +5,15 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 @Data
 @Entity
 public class Quote implements Serializable {
     //Primary key
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
-    //Table connection between Quotes and UserQuotes
-    @OneToMany(mappedBy = "quote")
-    Set<UserQuotes> userQuotes;
     private String quote;
     private Date fromDate;
     private Date untilDate;

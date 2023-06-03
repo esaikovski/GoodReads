@@ -7,14 +7,14 @@ import java.io.Serializable;
 
 @Data
 @Entity
-public class BookShelf implements Serializable {
+@Table(name = "roles")
+public class Role implements Serializable {
     //Primary key
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
-    @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
     private String description;
+
 }
