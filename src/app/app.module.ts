@@ -8,7 +8,6 @@ import { HomeComponent } from './shared/views/home/home.component';
 import { RegistrationComponent } from './shared/views/registration/registration.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SigninComponent } from './shared/views/signin/signin.component';
-import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +15,6 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     RegistrationComponent,
     SigninComponent,
-    RegisterComponent
   ],
   imports: [
     BrowserModule,

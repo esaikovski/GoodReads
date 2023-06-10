@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-registration',
@@ -6,8 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
-
-  submit(login){
+   submit(login: any){
     console.log("Form submitted", login)
   }
 
