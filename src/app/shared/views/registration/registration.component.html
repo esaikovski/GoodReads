@@ -1,0 +1,61 @@
+<!--Registration page header to be modified as required-->
+<div class="a-section a-spacing-medium a-text-center">
+  <a class="a-link-nav-icon" tabindex="-1" href="https://www.goodreads.com">
+    <img src="https://m.media-amazon.com/images/G/01/goodreads/Goodreads-Logo-AuthPortal._CB646706455_.png" alt="Goodreads">
+  </a>
+</div>
+
+<!--Registration form container-->
+<div class="registration-container">
+  <h1 class="a-spacing-small">
+    Create Account
+  </h1>
+  <form #login="ngForm" (ngSubmit)="submit(login)">
+    <div class="form-group">
+      <label for="customer_name" class="a-form-label">
+        Your name
+      </label><br>
+      <input type="text" maxlength="50" id="customer_name" autocomplete="name" placeholder="First and last name" name="customerName" tabindex="1" ngModel>
+    </div>
+    <pre></pre>
+    <div class="form-group">
+      <label for="email" class="a-form-label">
+        Email
+      </label><br>
+      <input type="email" maxlength="64" id="email" autocomplete="email" name="email" tabindex="3" ngModel>
+    </div>
+    <pre></pre>
+    <div class="form-group">
+      <label for="password" class="a-form-label">
+        Password
+      </label><br>
+      <input type="password" maxlength="1024" id="password" autocomplete="off" placeholder="At least 6 characters" name="password" tabindex="5" ngModel>
+    </div>
+    <pre></pre>
+    <div class="form-group">
+      <label for="password_check" class="a-form-label">
+        Re-enter password
+      </label><br>
+      <input type="password" maxlength="1024" id="password_check" autocomplete="off" name="passwordCheck" tabindex="6" ngModel>
+    </div>
+    <pre></pre>
+    <button class="registration-submit-btn" type="submit">Create account</button>
+  </form>
+</div><br>
+
+<!--Legal text information-->
+<div id="legalTextRow" class="a-row a-spacing-top-medium a-size-small">
+  By creating an account, you agree to the Goodreads <a href="https://www.goodreads.com/about/terms">Terms of Service</a> and <a href="https://www.goodreads.com/about/privacy">Privacy Policy</a>
+</div>
+
+<!--Sign in option-->
+<div class="a-row">
+  Already have an account?
+  <a class="a-link-emphasis" href="/ap/signin?openid.return_to=https%3A%2F%2Fwww.goodreads.com%2Fap-handler%2Fregister&amp;prevRID=812W7HF2EF6K4N5Q5K1R&amp;openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;openid.assoc_handle=amzn_goodreads_web_na&amp;openid.mode=checkid_setup&amp;siteState=a661cc7c136387badde31a5512cc4d1f&amp;language=en_US&amp;openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;pageId=amzn_goodreads_web_na&amp;openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0">
+    Sign in
+  </a>
+</div>
+
+
+
+
