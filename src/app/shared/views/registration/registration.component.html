@@ -1,53 +1,92 @@
 <!--Registration page header to be modified as required-->
-<div class="header">
+<div class="header m-2">
   <a class="nav-icon" tabindex="-1" href="https://www.goodreads.com">
     <img src="https://m.media-amazon.com/images/G/01/goodreads/Goodreads-Logo-AuthPortal._CB646706455_.png" alt="Goodreads">
   </a>
 </div>
 
 <!--Registration form container-->
-<div class="registration-container">
-  <h1 class="a-spacing-small">
-    Create Account
-  </h1>
-  <form #login="ngForm" (ngSubmit)="submit(login)">
-    <div class="form-group">
-      <label for="customer_name" class="form-label">
-        Your name
-      </label><br>
-      <input #customerName = "ngModel" type="text" required maxlength="50" id="customer_name" placeholder="First and last name" name="customerName" tabindex="1" ngModel>
-      <div *ngIf="customerName.touched && customerName.invalid" class="alert">Name is required</div>
-    </div>
-    <pre></pre>
-    <div class="form-group">
-      <label for="email" class="form-label">
-        Email
-      </label><br>
-      <input #email = "ngModel"  type="email" required maxlength="64" id="email" name="email" tabindex="3" ngModel>
-      <div *ngIf="email.touched && email.invalid" class="alert">E-mail is required</div>
-    </div>
-    <pre></pre>
-    <div class="form-group">
-      <label for="password" class="form-label">
-        Password
-      </label><br>
-      <input #password = "ngModel" type="password" required minlength="6" maxlength="1024" id="password" placeholder="At least 6 characters" name="password" tabindex="5" ngModel>
-      <div *ngIf="password.touched && password.invalid" class="alert">
-        <p *ngIf="password.errors?.['required']">Password is required</p>
-        <p *ngIf="password.errors?.['minlength']">Password should be at least 6 characters long</p>
+<div class="register-form mx-auto col-10 col-md-8 col-lg-3">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group m-2">
+      <label>Full Name</label>
+      <input
+        type="text"
+        formControlName="fullName"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['fullName'].errors }"
+      />
+      <div *ngIf="submitted && f['fullName'].errors" class="invalid-feedback">
+        <div *ngIf="f['fullName'].errors['required']">Fullname is required</div>
       </div>
     </div>
-    <pre></pre>
-    <div class="form-group">
-      <label for="password_check" class="form-label">
-        Re-enter password
-      </label><br>
-      <input required type="password" maxlength="1024" id="password_check" name="passwordCheck" tabindex="6" ngModel>
+
+    <div class="form-group m-2">
+      <label>Email</label>
+      <input
+        type="text"
+        formControlName="email"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+      />
+      <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+        <div *ngIf="f['email'].errors['required']">Email is required</div>
+        <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+      </div>
     </div>
-    <pre></pre>
-    <button class="registration-submit-btn" type="submit">Create account</button>
+
+    <div class="form-group m-2">
+      <label>Password</label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+      />
+      <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+        <div *ngIf="f['password'].errors['required']">Password is required</div>
+        <div *ngIf="f['password'].errors['minlength']">
+          Password must be at least 6 characters
+        </div>
+        <div *ngIf="f['password'].errors['maxlength']">
+          Username must not exceed 40 characters
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group m-2">
+      <label>Confirm Password</label>
+      <input
+        type="password"
+        formControlName="confirmPassword"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }"
+      />
+      <div
+        *ngIf="submitted && f['confirmPassword'].errors"
+        class="invalid-feedback"
+      >
+        <div *ngIf="f['confirmPassword'].errors['required']">
+          Confirm Password is required
+        </div>
+        <div *ngIf="f['confirmPassword'].errors['matching']">
+          Confirm Password does not match
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group m-2">
+      <button type="submit" class="btn btn-primary">Register</button>
+      <button
+        type="button"
+        (click)="onReset()"
+        class="btn btn-warning float-right"
+      >
+        Reset
+      </button>
+    </div>
   </form>
-</div><br>
+</div>
 
 <!--Legal text information-->
 <div id="legalTextRow" class="a-row a-spacing-top-medium a-size-small">

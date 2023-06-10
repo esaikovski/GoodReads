@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import {RouterOutlet} from "@angular/router";
 import { HomeComponent } from './shared/views/home/home.component';
 import { RegistrationComponent } from './shared/views/registration/registration.component';
@@ -19,10 +19,9 @@ import { SigninComponent } from './shared/views/signin/signin.component';
   imports: [
     BrowserModule,
     HttpClientModule, //Required for making HTTP requests
-    FormsModule,
     RouterOutlet,
     AppRoutingModule,
-    //Required for handling the forms
+    ReactiveFormsModule,//Required for handling the forms
   ],
   providers: [],
   bootstrap: [AppComponent]
