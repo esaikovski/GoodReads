@@ -30,7 +30,7 @@
         [ngClass]="{ 'is-invalid': submitted && f['fullName'].errors }"
       />
       <div *ngIf="submitted && f['fullName'].errors" class="invalid-feedback">
-        <div *ngIf="f['fullName'].errors['required']">Fullname is required</div>
+        <div *ngIf="f['fullName'].errors['required']">Full name is required</div>
       </div>
     </div>
 
@@ -90,6 +90,7 @@
 
     <div class="form-group m-2">
       <button type="submit" class="btn btn-dark">Register</button>
+
       <button
         type="button"
         (click)="onReset()"
@@ -98,6 +99,15 @@
         Reset
       </button>
     </div>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Your registration is successful!
+    </div>
+
+    <div class="alert alert-warning" *ngIf="isSignUpFailed">
+      Signup failed!<br />{{ errorMessage }}
+    </div>
+
   </form>
 </div>
 

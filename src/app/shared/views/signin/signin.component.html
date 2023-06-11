@@ -4,18 +4,9 @@
     <img src="https://m.media-amazon.com/images/G/01/goodreads/Goodreads-Logo-AuthPortal._CB646706455_.png" alt="Goodreads">
   </a>
 </div>
-
-<!--Profile picture
-<div class="login-form col-md-2">
-  <div class="card card-container">
-    <img
-      id="profile-img"
-      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-      class="profile-img-card"
-    />-->
     <!--Sing-in form container-->
     <div class="sign-in-form mx-auto col-10 col-md-8 col-lg-3">
-      <form *ngIf="!isLoggedIn" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form-group m-2">
           <label>Username</label>
           <input
@@ -46,18 +37,15 @@
           <button type="submit" class="btn btn-dark">Login</button>
         </div>
         <!--Login failed notification-->
-        <div class="form-group">
-          <div *ngIf="f['submitted'] && isLoginFailed" class="alert alert-danger" role="alert">
-            <!--Catch Http response and send a message-->
-            Login failed: {{ errorMessage }}
-          </div>
-       </div>
+        <div class="alert alert-danger" *ngIf="isLoginFailed">
+          Login failed!<br />{{ errorMessage }}
+        </div>
       </form>
     </div>
-    <!--Logged in as notification-->
+    <!--Logged in as notification
     <div class="alert alert-success" *ngIf="isLoggedIn">
     Logged in as {{ roles }}.
-    </div>
+    </div>-->
 
     <!--Footer sign in option-->
     <div class="footer">

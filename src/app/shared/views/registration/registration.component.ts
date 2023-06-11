@@ -72,14 +72,12 @@ export class RegistrationComponent implements OnInit {
         this.isSuccessful = true;
         this.isSignUpFailed = false;
       },
+      //Declaration of error message if any error present
       error: err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err.error;
         this.isSignUpFailed = true;
       }
     })
-    //We need to add a check if bad request received then can't redirect to sing_in page.
-    this.router.navigate(['/sign_in']);
-
   }
 
   onReset(): void {
