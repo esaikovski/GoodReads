@@ -38,11 +38,19 @@ public class AuthController {
 
     @PostMapping("login")
     public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
+        if(!userRepository.existsByUsername(loginDto.getUsername())){
+            return new ResponseEntity<>("Username not found!", HttpStatus.BAD_REQUEST);
+        }
+
+        if(!userRepository.existsByUsername(loginDto.getPassword())){
+            return new ResponseEntity<>("Entered password is incorrect!", HttpStatus.BAD_REQUEST);
+        }
+
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsername(),
                         loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new ResponseEntity<>("User signed success!", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
@@ -67,7 +75,7 @@ public class AuthController {
 
         userRepository.save(user);
 
-        return new ResponseEntity<>("User registered successfully!",HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
 
     }
 
