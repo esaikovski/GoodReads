@@ -57,15 +57,16 @@ export class SigninComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
-        this.reloadPage();
+
       },
+      //Declaration of error message if any error present
       error: err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err.message;
         this.isLoginFailed = true;
       }
     })
     //We need to add a check if bad request received then can't redirect to sing_in page.
-    this.router.navigate(['/signed_in']);
+    this.router.navigate(['/sign_in']);
   }
 
   reloadPage(): void {
