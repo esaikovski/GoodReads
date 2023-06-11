@@ -21,4 +21,7 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
     //Returns true/false if such username doest exist
     Boolean existsByUsername(String username);
+
+    //Returns true/false if such e-mail doest exist
+    Boolean existsByEmail(String email);
 }

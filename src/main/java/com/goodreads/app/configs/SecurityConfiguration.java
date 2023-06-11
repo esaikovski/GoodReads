@@ -27,15 +27,16 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .cors().disable()
                 .authorizeRequests()
-                .requestMatchers("/api/auth/**").permitAll()
-                .anyRequest().authenticated()
+                //.requestMatchers("/api/auth/**").permitAll()
+                .anyRequest().permitAll() //All requests are available for everyone.
                 .and()
                 .httpBasic();
         return http.build();
     }
 
-    // With this line of code you can add a in-memory user, but if it will remain it will override our custom user detail service.
+    // With this line of code you can add an in-memory user, but if it will remain it will override our custom user detail service.
     /*
     @Bean
     public UserDetailsService users() {

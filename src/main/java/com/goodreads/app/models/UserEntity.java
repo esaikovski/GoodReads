@@ -18,16 +18,9 @@ public class UserEntity implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long id;
     private String username;
-    //@Column(nullable = false)
     private String password;
-    //@Column(nullable = false)
-    private String name;
-    private String middleName;
-    //@Column(nullable = false)
-    private String surname;
-    //@Column(nullable = false)
+    private String fullName;
     private String email;
-    //@Column(nullable = false)
     private Character gender;
     private String address;
     //Date formatting required? date?

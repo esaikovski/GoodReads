@@ -14,17 +14,11 @@ public class Book implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
-    //@Column(nullable = false, updatable = false)
     private String title;
-    //@Column(nullable = false, updatable = false)
     private String author;
-    //@Column(nullable = false, updatable = false)
     private Integer isbn;
-    //@Column(nullable = false, updatable = false)
     private Date published;
-    //@Column(nullable = false, updatable = false)
     private String language;
-    //@Column(nullable = false, updatable = false)
     private String genre;
     private String summary;
     private Date fromDate;

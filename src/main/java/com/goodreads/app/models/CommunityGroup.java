@@ -13,9 +13,7 @@ public class CommunityGroup implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
-    //@Column(nullable = false, updatable = false)
     private String name;
-    //@Column(nullable = false, updatable = false)
     private String description;
 
 }
