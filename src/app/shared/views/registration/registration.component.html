@@ -1,6 +1,6 @@
 <!--Registration page header to be modified as required-->
 <div class="header m-2">
-  <a class="nav-icon" tabindex="-1" href="https://www.goodreads.com">
+  <a class="nav-icon" tabindex="-1" href="http://localhost:4200/">
     <img src="https://m.media-amazon.com/images/G/01/goodreads/Goodreads-Logo-AuthPortal._CB646706455_.png" alt="Goodreads">
   </a>
 </div>
@@ -8,6 +8,19 @@
 <!--Registration form container-->
 <div class="register-form mx-auto col-10 col-md-8 col-lg-3">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group m-2">
+      <label>Username</label>
+      <input
+        type="text"
+        formControlName="username"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+      />
+      <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+        <div *ngIf="f['username'].errors['required']">Username is required</div>
+      </div>
+    </div>
+
     <div class="form-group m-2">
       <label>Full Name</label>
       <input
@@ -49,7 +62,7 @@
           Password must be at least 6 characters
         </div>
         <div *ngIf="f['password'].errors['maxlength']">
-          Username must not exceed 40 characters
+          Password must not exceed 40 characters
         </div>
       </div>
     </div>
@@ -96,7 +109,7 @@
 <!--Footer sign in option-->
 <div class="footer">
   Already have an account?
-  <a class="a-link-emphasis" href="/ap/signin?openid.return_to=https%3A%2F%2Fwww.goodreads.com%2Fap-handler%2Fregister&amp;prevRID=812W7HF2EF6K4N5Q5K1R&amp;openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;openid.assoc_handle=amzn_goodreads_web_na&amp;openid.mode=checkid_setup&amp;siteState=a661cc7c136387badde31a5512cc4d1f&amp;language=en_US&amp;openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;pageId=amzn_goodreads_web_na&amp;openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0">
+  <a class="a-link-emphasis" href="http://localhost:4200/sign_in">
     Sign in
   </a>
 </div>

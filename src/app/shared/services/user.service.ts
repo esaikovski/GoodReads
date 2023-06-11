@@ -16,7 +16,7 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
   //Method to add new user to the API server
- public addUser(user: UserEntity): Observable<UserEntity>{
+  public addUser(user: UserEntity): Observable<UserEntity>{
     return this.http.post<UserEntity>(`${this.apiServerUrl}/user/add`, user)
- }
+  }
 }

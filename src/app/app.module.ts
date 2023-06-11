@@ -8,6 +8,7 @@ import { HomeComponent } from './shared/views/home/home.component';
 import { RegistrationComponent } from './shared/views/registration/registration.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SigninComponent } from './shared/views/signin/signin.component';
+import { SignedinComponent } from './shared/views/signedin/signedin.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SigninComponent } from './shared/views/signin/signin.component';
     HomeComponent,
     RegistrationComponent,
     SigninComponent,
+    SignedinComponent,
   ],
   imports: [
     BrowserModule,

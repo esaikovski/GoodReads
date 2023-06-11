@@ -1,15 +1,24 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import Validation from "./validation";
-
+import {AuthService} from "../../services/auth.service";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit{
+export class RegistrationComponent implements OnInit {
+
+  //Definition of variables used during registration/authentication process
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+
+  //Definition of form group fields
   form: FormGroup = new FormGroup({
+    username: new FormControl(''),
     fullName: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
@@ -17,11 +26,14 @@ export class RegistrationComponent implements OnInit{
   });
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  }
 
+  //Form validators, can be changed as needed
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
+        username: ['', Validators.required],
         fullName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: [
@@ -44,14 +56,30 @@ export class RegistrationComponent implements OnInit{
     return this.form.controls;
   }
 
+  //Register button modification
   onSubmit(): void {
+
     this.submitted = true;
 
     if (this.form.invalid) {
       return;
     }
+    const {username, fullName, email, password} = this.form.value;
 
-    console.log(JSON.stringify(this.form.value, null, 2));
+    this.authService.register(username, fullName, email, password).subscribe({
+      next: data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    })
+    //We need to add a check if bad request received then can't redirect to sing_in page.
+    this.router.navigate(['/sign_in']);
+
   }
 
   onReset(): void {
