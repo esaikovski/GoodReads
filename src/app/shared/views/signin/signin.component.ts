@@ -16,7 +16,7 @@ export class SigninComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   submitted = false;
-  roles: string[] = [];
+  //roles: string[] = [];
 
   //Definition of form group fields
   form: FormGroup = new FormGroup({
@@ -35,13 +35,12 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
+      //this.roles = this.storageService.getUser().roles;
     }
   }
 
   //Sing-in button modification
   onSubmit(): void {
-
     this.submitted = true;
 
     if (this.form.invalid) {
@@ -52,25 +51,24 @@ export class SigninComponent implements OnInit {
 
     this.authService.login(username, password).subscribe({
       next: data => {
-        this.storageService.saveUser(data);
+        //this.storageService.saveUser(data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.storageService.getUser().roles;
+        //this.roles = this.storageService.getUser().roles;
 
       },
       //Declaration of error message if any error present
       error: err => {
         this.errorMessage = err.error;
         this.isLoginFailed = true;
-      }
-    })
-    if(this.isLoggedIn){
+      },
+      complete: () => {
+      if(this.isLoggedIn){
       this.router.navigate(['/signed_in']).then(()=> window.location.reload());
+      }
     }
+    })
   }
 
-  /*reloadPage(): void {
-    window.location.reload();
-  }*/
 }
