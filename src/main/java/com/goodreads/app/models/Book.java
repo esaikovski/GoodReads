@@ -17,7 +17,7 @@ public class Book implements Serializable {
     private String title;
     private String author;
     private Integer isbn;
-    private Date published;
+    private String published;
     private String language;
     private String genre;
     private String summary;

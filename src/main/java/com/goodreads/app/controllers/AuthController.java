@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -38,13 +39,23 @@ public class AuthController {
 
     @PostMapping("login")
     public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
+
+        // Find the user by username
+        Optional<UserEntity> userOptional  = userRepository.findByUsername(loginDto.getUsername());
+
         if(!userRepository.existsByUsername(loginDto.getUsername())){
             return new ResponseEntity<>("Username not found!", HttpStatus.BAD_REQUEST);
         }
 
-        if(!userRepository.existsByUsername(loginDto.getPassword())){
+        UserEntity user = userOptional.get();
+
+        if(!passwordEncoder.matches(loginDto.getPassword(), user.getPassword())){
             return new ResponseEntity<>("Entered password is incorrect!", HttpStatus.BAD_REQUEST);
         }
+
+        /*if(!userRepository.existsByUsername(loginDto.getPassword())){
+            return new ResponseEntity<>("Entered password is incorrect!", HttpStatus.BAD_REQUEST);
+        }*/
 
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsername(),
@@ -70,13 +81,18 @@ public class AuthController {
         user.setEmail(registerDto.getEmail());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
 
+        //By default, the user role is set to "USER"
         Role roles = roleRepository.findByName("USER").get();
         user.setRoles(Collections.singletonList(roles));
 
         userRepository.save(user);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
 
+    @PostMapping("signout")
+    public ResponseEntity<?> logoutUser() {
+        return new ResponseEntity<>("You have been successfully signed out!", HttpStatus.OK);
     }
 
 }

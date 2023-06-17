@@ -60,6 +60,7 @@ public class SecurityConfiguration {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+    //Password encoder type which we have chosen
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

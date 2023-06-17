@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -23,8 +24,7 @@ public class UserEntity implements Serializable {
     private String email;
     private Character gender;
     private String address;
-    //Date formatting required? date?
-    private Integer dateOfBirth;
+    private Date dateOfBirth;
     private String phoneNumber;
     private String aboutMe;
     private String myInterests;

@@ -37,9 +37,31 @@ public class UserService {
         return userRepository.findUserById(id).orElseThrow(() -> new UserNotFoundException("User by id " + id + " was not found"));
     }
 
-    //Delete employee
+    //Find user by username
+    public UserEntity findUserByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException("User with username: " + username + " was not found"));
+    }
+
+    //Delete user
     public void deleteUser(Long id){
         userRepository.deleteUserById(id);
     }
 
+    //Delete user's role
+    public void deleteUserDependencies(Long id){
+        // Retrieve the user by ID
+        UserEntity user = userRepository.findById(id).orElse(null);
+
+        // Check if the user exists
+        if (user == null) {
+            return;
+        }
+
+        // Remove the user's roles
+        user.getRoles().clear();
+
+        // Save the updated user
+        userRepository.save(user);
+
+    }
 }
