@@ -19,6 +19,8 @@ export class AuthService {
   //Inject HttpClient in the constructor
   constructor(private http:HttpClient) { }
 
+
+  //Login method definition
   login(username: string, password: string): Observable<any> {
     return this.http.post(
       this.apiServerUrl + 'api/auth/login',
@@ -30,6 +32,7 @@ export class AuthService {
     );
   }
 
+  //Register method definition
   register(username: string, fullName: string, email: string, password: string): Observable<any> {
     return this.http.post(
       this.apiServerUrl + 'api/auth/register',
@@ -43,7 +46,8 @@ export class AuthService {
     );
   }
 
+  //Logout function definition
   logout(): Observable<any> {
-    return this.http.post(this.apiServerUrl + 'signout', { }, httpOptions);
+    return this.http.post(this.apiServerUrl + 'api/auth/signout', { }, httpOptions);
   }
 }

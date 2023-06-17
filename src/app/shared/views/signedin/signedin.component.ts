@@ -1,9 +1,12 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule, MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
 import {Router} from "@angular/router";
+import {StorageService} from "../../services/storage.service";
+import {AuthService} from "../../services/auth.service";
+import {UserEntity} from "../../models/user.entity";
 
 const ACCOUNT_ICON =
   `
@@ -19,18 +22,35 @@ const ACCOUNT_ICON =
   standalone: true,
   imports: [MatButtonModule, MatMenuModule, MatIconModule],
 })
-export class SignedinComponent {
+export class SignedinComponent implements OnInit {
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private router: Router) {
+  // Array of Books objects to hold book data
+  public books: UserEntity[] | undefined | null;
+
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private router: Router, private storageService: StorageService, private authservice: AuthService) {
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(ACCOUNT_ICON));
   }
 
+  // Things to happen during the page initialization
+  ngOnInit(): void {
+    this.getBooks() // Call method to retrieve all books from the back-end server;
+  }
+
+  // Functionality to receive books to be added here
+  public getBooks(): void {
+  }
+
+  //Method for settings component navigation
   onSettings(): void {
     this.router.navigate(['/settings']).then(()=> window.location.reload());
   }
 
+  //Method for sign-out component navigation
   onSignout(): void {
     this.router.navigate(['/home']).then(()=> window.location.reload());
+    this.storageService.clean();
+    //Show message to the user
+    this.authservice.logout();
   }
 
 }

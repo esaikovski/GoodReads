@@ -15,8 +15,19 @@ export class UserService {
   //Inject HttpClient in the constructor
   constructor(private http:HttpClient) { }
 
-  //Method to add new user to the API server
-  public addUser(user: UserEntity): Observable<UserEntity>{
-    return this.http.post<UserEntity>(`${this.apiServerUrl}/user/add`, user)
+  //Method to get user data by username from the API server
+  public getUserByUsername(username: string): Observable<UserEntity[]>{
+    return this.http.get<UserEntity[]>(`${this.apiServerUrl}user/find/username/${username}`);
   }
+
+  //Method to update user's details on the API server
+  public updateUser(id: number, updatedFields: Partial<UserEntity>): Observable<UserEntity> {
+    return this.http.patch<UserEntity>(`${this.apiServerUrl}user/update/${id}`, updatedFields);
+  }
+
+  //Method to delete a user on the API server by id
+  public deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}user/delete/${id}`);
+  }
+
 }

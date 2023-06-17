@@ -1,56 +1,54 @@
 <!--Sign-in page header to be modified as required-->
 <div class="header m-2">
   <a class="nav-icon" tabindex="-1" href="http://localhost:4200/">
-    <img src="https://m.media-amazon.com/images/G/01/goodreads/Goodreads-Logo-AuthPortal._CB646706455_.png" alt="Goodreads">
+    <img src="https://m.media-amazon.com/images/G/01/goodreads/Goodreads-Logo-AuthPortal._CB646706455_.png"
+         alt="Goodreads">
   </a>
 </div>
-    <!--Sing-in form container-->
-    <div class="sign-in-form mx-auto col-10 col-md-8 col-lg-3">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="form-group m-2">
-          <label>Username</label>
-          <input
-            type="text"
-            formControlName="username"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
-          />
-          <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
-            <div *ngIf="f['username'].errors['required']">Username is required</div>
-          </div>
-        </div>
 
-        <div class="form-group m-2">
-          <label>Password</label>
-          <input
-            type="password"
-            formControlName="password"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
-          />
-          <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
-            <div *ngIf="f['password'].errors['required']">Password is required</div>
-          </div>
-        </div>
-        <!--Buttons definition-->
-        <div class="form-group m-2">
-          <button type="submit" class="btn btn-dark">Login</button>
-        </div>
-        <!--Login failed notification-->
-        <div class="alert alert-danger" *ngIf="isLoginFailed">
-          Login failed!<br />{{ errorMessage }}
-        </div>
-      </form>
+<!--Sing-in form container-->
+<div class="sign-in-form mx-auto col-10 col-md-8 col-lg-3">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group m-2">
+      <label>Username</label>
+      <input
+        type="text"
+        formControlName="username"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+      />
+      <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+        <div *ngIf="f['username'].errors['required']">Username is required</div>
+      </div>
     </div>
-    <!--Logged in as notification
-    <div class="alert alert-success" *ngIf="isLoggedIn">
-    Logged in as {{ roles }}.
-    </div>-->
 
-    <!--Footer sign in option-->
-    <div class="footer">
-      Not a member?
-      <a class="a-link-emphasis" href="http://localhost:4200/register">
-        Sign up
-      </a>
+    <div class="form-group m-2">
+      <label>Password</label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+      />
+      <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+        <div *ngIf="f['password'].errors['required']">Password is required</div>
+      </div>
     </div>
+    <!--Buttons definition-->
+    <div class="form-group m-2">
+      <button type="submit" class="btn btn-dark">Login</button>
+    </div>
+    <!--Login failed notification-->
+    <div class="alert alert-danger" *ngIf="isLoginFailed">
+      Login failed!<br/>{{ errorMessage }}
+    </div>
+  </form>
+</div>
+
+<!--Footer sign in option-->
+<div class="footer">
+  Not a member?
+  <a class="a-link-emphasis" href="http://localhost:4200/register">
+    Sign up
+  </a>
+</div>

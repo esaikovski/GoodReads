@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-//Manages user information (username, email, roles) inside Browser’s Session Storage. For Logout, we will clear this Session Storage.
 
 const USER_KEY = 'auth-user';
 
@@ -7,16 +6,17 @@ const USER_KEY = 'auth-user';
   providedIn: 'root'
 })
 export class StorageService {
+  constructor() {}
 
-  constructor() { }
-
-  clean(): void {
+  //Method to clean session data
+  public clean(): void {
     window.sessionStorage.clear();
   }
 
+  //Method to storage logged-in user session data
   public saveUser(user: any): void {
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+    sessionStorage.removeItem(USER_KEY);
+    sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
   public getUser(): any {
@@ -36,7 +36,4 @@ export class StorageService {
 
     return false;
   }
-
 }
-
-

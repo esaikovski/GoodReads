@@ -7,12 +7,12 @@ import {SignedinComponent} from "./shared/views/signedin/signedin.component";
 import {UserSettingsComponent} from "./shared/views/user-settings/user-settings.component";
 
 const routes: Routes = [
-  {path:'', component:HomeComponent},
+  {path:'', redirectTo: 'home', pathMatch: 'full'},
   {path:'home', component:HomeComponent},
   {path:'register', component:RegistrationComponent},
   {path:'sign_in', component:SigninComponent},
   {path:'signed_in', component:SignedinComponent},
-  {path:'settings', component:UserSettingsComponent}
+  {path:'settings', component:UserSettingsComponent},
 ]
 
 @NgModule({

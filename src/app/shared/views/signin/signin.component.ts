@@ -16,7 +16,6 @@ export class SigninComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   submitted = false;
-  //roles: string[] = [];
 
   //Definition of form group fields
   form: FormGroup = new FormGroup({
@@ -31,11 +30,10 @@ export class SigninComponent implements OnInit {
     return this.form.controls;
   }
 
-  //Form validators, can be changed as needed
+  //Check if the user is already logged-in
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
-      //this.roles = this.storageService.getUser().roles;
     }
   }
 
@@ -51,12 +49,10 @@ export class SigninComponent implements OnInit {
 
     this.authService.login(username, password).subscribe({
       next: data => {
-        //this.storageService.saveUser(data);
-
+        //Saves user in browser session storage
+        this.storageService.saveUser(this.form.value);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        //this.roles = this.storageService.getUser().roles;
-
       },
       //Declaration of error message if any error present
       error: err => {

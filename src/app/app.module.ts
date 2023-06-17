@@ -27,7 +27,7 @@ import { UserSettingsComponent } from './shared/views/user-settings/user-setting
     AppRoutingModule,
     ReactiveFormsModule,
     NgbModule,
-    BrowserAnimationsModule,//Required for handling the forms
+    BrowserAnimationsModule, //Required for handling the forms
     SignedinComponent,
     UserSettingsComponent
   ],

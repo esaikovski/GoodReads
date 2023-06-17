@@ -24,6 +24,8 @@ export class RegistrationComponent implements OnInit {
     password: new FormControl(''),
     confirmPassword: new FormControl(''),
   });
+
+  // Variable to check if the form is submitted or not
   submitted = false;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
@@ -57,7 +59,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   //Register button modification
-  onSubmit(): void {
+  public onSubmit(): void {
 
     this.submitted = true;
 
@@ -80,7 +82,8 @@ export class RegistrationComponent implements OnInit {
     })
   }
 
-  onReset(): void {
+  //Method to reset the registration form
+  public onReset(): void {
     this.submitted = false;
     this.form.reset();
   }
